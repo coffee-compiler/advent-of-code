@@ -18,8 +18,8 @@ fn total_distance(first_list: &mut [u32], second_list: &mut [u32]) -> u32 {
     second_list.sort();
 
     for i in 0..first_list.len() {
-        let n1 = first_list[i];
-        let n2 = second_list[i];
+        let n1 = &first_list[i];
+        let n2 = &second_list[i];
 
         total += if n1 >= n2 { n1 - n2 } else { n2 - n1 };
     }
