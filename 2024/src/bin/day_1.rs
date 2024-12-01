@@ -1,10 +1,14 @@
+use std::collections::HashMap;
+
 fn main() {
     let mut first_list = FIRST_LIST_DATA.to_owned();
     let mut second_list = SECOND_LIST_DATA.to_owned();
 
-    let result = total_distance(&mut first_list, &mut second_list);
+    let result_p2 = similarity_score(&first_list, &second_list);
+    let result_p1 = total_distance(&mut first_list, &mut second_list);
 
-    println!("{}", result);
+    println!("P1: {}", result_p1);
+    println!("P2: {}", result_p2);
 }
 
 fn total_distance(first_list: &mut [u32], second_list: &mut [u32]) -> u32 {
@@ -21,6 +25,28 @@ fn total_distance(first_list: &mut [u32], second_list: &mut [u32]) -> u32 {
     }
 
     total
+}
+
+fn similarity_score(first_list: &[u32], second_list: &[u32]) -> u32 {
+    let mut score: u32 = 0;
+    let mut item_score_map = HashMap::new();
+
+    for item in first_list.iter() {
+
+        if let Some(item_score) = item_score_map.get(item) {
+            score += item_score;
+            continue;
+        }
+
+        let item_count = second_list.iter().filter(|n| *n == item).count() as u32;
+        let item_score = item * item_count;
+
+        item_score_map.insert(item, item_score);
+
+        score += item_score;
+    }
+
+    score
 }
 
 const FIRST_LIST_DATA: [u32; 1000] = [
