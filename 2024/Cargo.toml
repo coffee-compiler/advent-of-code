@@ -1,0 +1,10 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "d1p1"
+path = "src/bin/day_1/puzzle_1.rs"
