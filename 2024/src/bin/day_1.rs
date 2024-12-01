@@ -32,7 +32,6 @@ fn similarity_score(first_list: &[u32], second_list: &[u32]) -> u32 {
     let mut item_score_map = HashMap::new();
 
     for item in first_list {
-
         if let Some(item_score) = item_score_map.get(item) {
             score += item_score;
             continue;
